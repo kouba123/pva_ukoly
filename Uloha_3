@@ -1,0 +1,50 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        ulong from = 100; 
+        int radix = 10; 
+        ulong next;
+
+        if (nextPalindrome(from, radix, out next) == 1)
+        {
+            Console.WriteLine($"Další palindrom v desítkové soustavě větší než {from} je: {next}");
+        }
+        else
+        {
+            Console.WriteLine($"Nepodařilo se najít další palindrom v desítkové soustavě větší než {from}.");
+        }
+    }
+
+    static int nextPalindrome(ulong from, int radix, out ulong next)
+    {
+        next = from + 1;
+
+        while (true)
+        {
+            if (isPalindrome(next, radix))
+            {
+                return 1;
+            }
+
+            next++;
+        }
+    }
+
+    static bool isPalindrome(ulong number, int radix)
+    {
+        string numberStr = Convert.ToString((long)number, radix);
+
+        for (int i = 0; i < numberStr.Length / 2; i++)
+        {
+            if (numberStr[i] != numberStr[numberStr.Length - i - 1])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
