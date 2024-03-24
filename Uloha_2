@@ -7,17 +7,14 @@ class Program
         Console.WriteLine("Zadejte souřadnice trojice bodů ve 2D rovině (x1 y1 x2 y2 x3 y3):");
         string input = Console.ReadLine();
 
-        // Rozdělení vstupu na jednotlivé souřadnice
         string[] coordinates = input.Split(' ');
         
-        // Kontrola, zda bylo zadáno 6 souřadnic
         if (coordinates.Length != 6)
         {
             Console.WriteLine("Chybný vstup. Zadejte 6 čísel oddělených mezerou.");
             return;
         }
 
-        // Převedení souřadnic na čísla
         if (!double.TryParse(coordinates[0], out double x1) ||
             !double.TryParse(coordinates[1], out double y1) ||
             !double.TryParse(coordinates[2], out double x2) ||
@@ -28,8 +25,6 @@ class Program
             Console.WriteLine("Chybný vstup. Zadejte platná čísla.");
             return;
         }
-
-        // Kontrola, zda body splňují podmínku pro společnou přímku
         bool collinear = (y3 - y2) * (x2 - x1) == (y2 - y1) * (x3 - x2);
 
         if (collinear)
